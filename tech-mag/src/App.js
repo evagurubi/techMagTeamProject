@@ -7,8 +7,6 @@ function App() {
 
   const apiKey = process.env.REACT_APP_API_KEY;
 
-  console.log(apiKey);
-
   useEffect(() => {
     fetch(
       `https://newsapi.org/v2/everything?q=Apple&from=2021-03-08&sortBy=popularity&apiKey=${apiKey}`
@@ -23,15 +21,15 @@ function App() {
   return (
     <div className="App">
       <button onClick={() => setDataNeeded(!dataNeeded)}>Data</button>
-      <div>
+      <div className="container">
         {myData !== undefined ? (
           myData.articles.map((article, i) => (
-            <ul key={i}>
-              <li>{article.author}</li>
-              <li>{article.title}</li>
-              <li>{article.content}</li>
-              <li>------------------------------</li>
-            </ul>
+            <div className="card" key={i}>
+              <h5>{article.author}</h5>
+              <h2>{article.title}</h2>
+              <p>{article.content}</p>
+              <p>------------------------------</p>
+            </div>
           ))
         ) : (
           <p>Loading...</p>

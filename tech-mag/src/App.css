@@ -1,3 +1,24 @@
 .App {
-  text-align: center;
+  padding: 10px;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 2rem;
+  grid-auto-rows: minmax(50px, auto);
+}
+
+.card {
+  border: solid black 3px;
+  border-radius: 7px;
+  padding: 10px;
+}
+
+.card:nth-child(3n + 1) {
+  grid-row-end: span 2;
+}
+
+.card:nth-child(4n + 3) {
+  grid-row-end: span 2;
 }
