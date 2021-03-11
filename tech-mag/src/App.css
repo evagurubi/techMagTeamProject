@@ -1,18 +1,57 @@
 .App {
   padding: 10px;
+  background-color: whitesmoke;
+  display: grid;
+  grid-template-areas:
+    "nav"
+    "container";
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  grid-area: nav;
+  background-color: black;
+  border-radius: 7px;
+  margin-bottom: 10px;
+  height: 100px;
+  width: 100%;
+}
+
+button {
+  margin-left: 20px;
+  width: 100px;
+  height: 30px;
+  background-color: whitesmoke;
+  border-radius: 7px;
+}
+
+button:hover {
+  background-color: rgba(128, 128, 128, 0.425);
 }
 
 .container {
+  grid-area: container;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 2rem;
-  grid-auto-rows: minmax(50px, auto);
+  grid-auto-rows: auto;
 }
 
 .card {
-  border: solid black 3px;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-content {
+  border: solid red 3px;
   border-radius: 7px;
   padding: 10px;
+  background-color: rgba(128, 128, 128, 0.425);
+  box-shadow: 5px 10px 8px 10px #888888;
 }
 
 .card:nth-child(3n + 1) {
@@ -21,4 +60,17 @@
 
 .card:nth-child(4n + 3) {
   grid-row-end: span 2;
+}
+
+.link {
+  color: black;
+}
+
+.link:hover {
+  color: #888888;
+}
+
+.images {
+  max-width: 70%;
+  z-index: -1;
 }
