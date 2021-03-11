@@ -1,0 +1,92 @@
+.App {
+	text-align: center;
+}
+body {
+	background-color: white;
+}
+.circle {
+	background-color: red;
+	border-radius: 5%;
+	display: inline-block;
+	width: 0.6rem;
+	height: 0.6rem;
+	position: relative;
+	margin: 0.5rem;
+}
+
+.animation {
+	display: block;
+	animation: showAnim ease-in-out 3s 6s;
+	/*grid-column: 2;*/
+}
+
+.one {
+	animation: pulse 3.7s 2, magnify-left 5s 4s;
+}
+.two {
+	animation: pulse 3.7s 2 0.5s, magnify 5s 4s;
+}
+.three {
+	animation: pulse 3.7s 2 0.7s, magnify-right 5s 4s;
+}
+.four {
+	animation: pulse 3.7s 2 1.7s;
+}
+.five {
+	animation: pulse 3.7s 2 1.5s;
+}
+.six {
+	animation: pulse 3.7s 3 0.9s;
+}
+.seven {
+	animation: pulse 3.7s 3 2.2s;
+}
+.eight {
+	animation: pulse 3.7s 3 2.5s;
+}
+.nine {
+	animation: pulse 3.7s 3 2.7s;
+}
+
+@keyframes pulse {
+	0% {
+		transform: scale(0.2, 0.2);
+	}
+
+	50% {
+		transform: scale(1, 1);
+	}
+
+	100% {
+		transform: scale(0.1, 0.1);
+	}
+}
+
+@keyframes magnify-left {
+	100% {
+		transform: scale(50, 50) translate(-0.7rem, 0.4rem);
+	}
+}
+@keyframes magnify {
+	100% {
+		transform: scale(50, 50) translate(0, 0.4rem);
+	}
+}
+@keyframes magnify-right {
+	100% {
+		transform: scale(50, 50) translate(0.7rem, 0.4rem);
+	}
+}
+
+@keyframes showAnim {
+	from {
+		opacity: 1;
+		visibility: visible;
+	}
+	to {
+		opacity: 0;
+		transition: opacity 2s ease-out;
+		visibility: hidden;
+		display: none;
+	}
+}
