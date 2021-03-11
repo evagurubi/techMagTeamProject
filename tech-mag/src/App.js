@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
-  const [myData, setMyData] = useState(undefined);
+  const [myData, setMyData] = useState([]);
   const [pageCounter, setPageCounter] = useState(1);
 
   const apiKey = process.env.REACT_APP_API_KEY;
@@ -10,15 +10,33 @@ function App() {
 
   useEffect(() => {
     fetch(
-      `https://newsapi.org/v2/everything?q=technology&to=${dateToday}&sortBy=publishedAt&pageSize=12&page=${pageCounter}&apiKey=${apiKey}`
+      `https://newsapi.org/v2/everything?q=technology&to=${dateToday}&sortBy=publishedAt&pageSize=9&page=${pageCounter}&apiKey=${apiKey}`
     )
       .then((response) => {
         if (response.status !== 200) return "It is still loading.";
         return response.json();
       })
-      .then((data) => setMyData(data));
+      .then((data) => setMyData([...myData, ...data.articles]));
     console.log("Mounted");
   }, [pageCounter]);
+
+  useEffect(() => {
+    window.addEventListener("scroll", infiniteScroll);
+    return function cleanup() {
+      window.removeEventListener("scroll", infiniteScroll);
+    };
+  }, [pageCounter]);
+
+  const infiniteScroll = () => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop ===
+      document.documentElement.offsetHeight
+    ) {
+      let newPage = pageCounter;
+      newPage++;
+      setPageCounter(newPage);
+    }
+  };
 
   return (
     <div className="App">
@@ -26,8 +44,8 @@ function App() {
         <button onClick={() => setPageCounter(pageCounter + 1)}>Data</button>
       </nav>
       <div className="container">
-        {myData !== undefined ? (
-          myData.articles.map((article, i) => (
+        {myData.length !== 0 ? (
+          myData.map((article, i) => (
             <div className="card" key={i}>
               <div className="card-content">
                 <h5>{article.author}</h5>
